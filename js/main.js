@@ -24,6 +24,10 @@ function roundVal(temp)
 	return Math.round(temp * 10) / 10;
 }
 
+
+
+
+
 /*
 function cleanOpenHabItemList(itemList)
 {	
@@ -50,19 +54,41 @@ function cleanWeatherItemList(itemList)
 
 function cleanItemList(itemList,content)
 {	
+	//console.log(content);
 	var addItems = content.getContent();
 	var newItems = new Array();
 	var oldItems = itemList;
+	//console.log(addItems);
+	//console.log(addItems);
 	//var aktDate = new Date();
 
+	if(itemList.length == 0){
+		if(addItems.length > 1){
+			return [addItems];
+		}
+		return [];
+	}
+	
+	for(var i in oldItems){
+		
+		if(oldItems[i][0] == addItems[0]){
+			//console.log(oldItems);
+			oldItems.splice(i,1,addItems);
+			//console.log(oldItems);
+			return oldItems;
+		}
+	}
+	oldItems.push(addItems);
+	return oldItems;
+	/*
 	if(itemList.length == 0){
 		return addItems;
 	}
 	if(addItems.length > 0){
 
 	for(var i in oldItems){
-		console.log(oldItems);
-		console.log(addItems);
+		//console.log(oldItems);
+		//console.log(addItems);
 		if(oldItems[i][0]==(addItems.length?addItems[0][0]:0)){
 			newItems.push(addItems[0]);
 			addItems.shift();
@@ -74,11 +100,12 @@ function cleanItemList(itemList,content)
 		newItems=newItems.concat(addItems);
 		
 	}
-	console.log(newItems);
+	//console.log(newItems);
 	return newItems;
 	}else{
 		return oldItems;
 	}
+	*/
 }
 
 
@@ -91,33 +118,52 @@ jQuery(document).ready(function($) {
 	var eventListCenterAlert = [];
 	var eventListBottom = new Array();
 	
+	var blockItemCounterRight = 1;
+	var blockItemCounterLeft = 1;
+	
 	setLanguageProperties(lang);
 
 	(function switchContentTopLeft()
 	{
-		
-		if(switchContentTLB == 1){
-			if(eventListTLB.length > 0){
+		console.log(eventListTLB);
 
-				$('.topleftblock').fadeOut(fadeTimeTLB, function() {
-					$('.topleftblock').html(eventListTLB[0][1]);
-					if(eventListTLB.length > 2){
-						eventListTLB.push(eventListTLB[0]);
-						eventListTLB.shift();
+		if(switchContentTLB == 1){
+			
+
+				if(eventListTLB.length > 0){
+					if(eventListTLB[0].length > 2){
+						console.log("Yes");
+						
+						$('.topleftblock').fadeOut(fadeTimeTLB, function() {
+							$('.topleftblock').html(eventListTLB[0][blockItemCounterLeft]);
+							
+							$('.topleftblock').fadeIn(fadeTimeTRB);
+						});
+						blockItemCounterLeft++;
+						
+						if(blockItemCounterLeft > eventListTLB[0].length){
+							blockItemCounterLeft = 1;
+							eventListTLB.push(eventListTLB[0]);
+							eventListTLB.shift();
+						}
+					}else{
+						$('.topleftblock').fadeOut(fadeTimeTLB, function() {
+						$('.topleftblock').html(eventListTLB[0][1]);
+						if(eventListTLB.length > 2){
+							//console.log(eventListTLB[0]);
+							eventListTLB.push(eventListTLB[0]);
+							eventListTLB.shift();
+						}
+						$('.topleftblock').fadeIn(fadeTimeTLB);
+					});
 					}
-					$('.topleftblock').fadeIn(fadeTimeTLB);
-				});
-			}		
+				}
+				
 		}else{
 			if(eventListTLB.length > 0){
-				
-				if(startUpCounter[0]==false){
-					startUpCounter[0] = true;
-				}
 				for(var i in eventListTLB){
 					if(eventListTLB[i][0]=="dates"){
 					$('.topleftblock').fadeOut(fadeTimeTLB, function() {
-					
 						$('.topleftblock').html(eventListTLB[i][1]);
 						eventListTLB.shift();
 						$('.topleftblock').fadeIn(fadeTimeTLB);
@@ -136,19 +182,38 @@ jQuery(document).ready(function($) {
 	
 	(function switchContentTopRight()
 	{
-		
+		//console.log(eventListTRB);
 		if(switchContentTRB == 1){
 			if(eventListTRB.length > 0){
-
-				$('.toprightblock').fadeOut(fadeTimeTRB, function() {
-					$('.toprightblock').html(eventListTRB[0][1]);
-					if(eventListTRB.length > 2){
+				if(eventListTRB[0].length > 2){
+					//console.log("Yes");
+					
+					$('.toprightblock').fadeOut(fadeTimeTRB, function() {
+						$('.toprightblock').html(eventListTRB[0][blockItemCounterRight]);
+						
+						$('.toprightblock').fadeIn(fadeTimeTRB);
+					});
+					blockItemCounterRight++;
+					
+					if(blockItemCounterRight > eventListTRB[0].length){
+						blockItemCounterRight = 1;
 						eventListTRB.push(eventListTRB[0]);
 						eventListTRB.shift();
-						
 					}
-					$('.toprightblock').fadeIn(fadeTimeTRB);
-				});
+				}else{
+					$('.toprightblock').fadeOut(fadeTimeTRB, function() {
+						$('.toprightblock').html(eventListTRB[0][1]);
+						if(eventListTRB.length > 1){
+							//console.log("Push");
+							//console.log(eventListTRB[0]);
+							eventListTRB.push(eventListTRB[0]);
+							eventListTRB.shift();
+							
+						}
+						$('.toprightblock').fadeIn(fadeTimeTRB);
+					});
+				}
+				
 
 			}
 		}else{
@@ -215,9 +280,7 @@ jQuery(document).ready(function($) {
 		}else{
 			if(eventListBottom.length > 0){
 				
-				if(startUpCounter[0]==false){
-					startUpCounter[0] = true;
-				}
+				
 				for(var i in eventListBottom){
 					if(eventListBottom[i][0]=="news"){
 					$('.bottom').fadeOut(fadeTimeTLB, function() {
@@ -253,6 +316,7 @@ jQuery(document).ready(function($) {
 
 		$('.date').html(date);
 		$('.time').html(now.toTimeString().substring(0,5) + '<span class="sec">'+now.toTimeString().substring(6,8)+'</span>');
+		//$('.time').html(now.format('HH') + ':' + now.format('mm') + '<span class="sec">'+now.format('ss')+'</span>');
 
 		setTimeout(function() {
 			updateTime();
@@ -262,8 +326,8 @@ jQuery(document).ready(function($) {
 
 	(function updateData()
 	{
-		for(var i in contentList){
-			contentList[i].updateData();
+		for(var i in contentLeftBlock){
+			contentLeftBlock[i].updateData();
 		}
 		for(var x in contentBottom){
 			contentBottom[x].updateData();
@@ -281,16 +345,16 @@ jQuery(document).ready(function($) {
 	
 	(function updateContent()
 	{	
-		for(var i in contentList){
-			
-			eventListTLB = cleanItemList(eventListTLB,contentList[i]);
+		for(var i in contentLeftBlock){
+	
+			eventListTLB = cleanItemList(eventListTLB,contentLeftBlock[i]);
 		
 		}
 		for(var x in contentBottom){
 			eventListBottom = eventListBottom.concat(contentBottom[x].getContent());
 		}
 		for(var y in contentRightBlock){
-			eventListTRB = cleanItemList(eventListTRB,contentList[y]);
+			eventListTRB = cleanItemList(eventListTRB,contentRightBlock[y]);
 		
 		}
 		for(var z in contentCenter){

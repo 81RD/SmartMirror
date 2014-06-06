@@ -18,17 +18,17 @@ this.getItems = function(start)
 		opacity = 1;
 		var i = 0;
 		//var tmp_th = this;
-		//console.log(this.eventList);
+		//console.log(this.eventList.length);
 		while(start < this.eventList.length && i < 5) {
 			var e = this.eventList[start];
 			var days = e.days;
-
+			
 			var daysString = (days == 1) ? tomorrow :  days + ' ' + in_days;
 			if(days <= this.maxDays){
 				if (days == 0) {
 					daysString = today;
 				}
-			
+				//console.log(daysString);
 				var row = $('<tr/>').css('opacity',opacity);
 				row.append($('<td/>').html(e.description).addClass('description'));
 				row.append($('<td/>').html(daysString).addClass('days dimmed'));
@@ -41,8 +41,12 @@ this.getItems = function(start)
 			i++;
 		}
 		//var pushItem = ["dates",table];
+		if(this.eventList.length != 0){
+			return table;
+		}else{
+			return "noData";
+		}
 		
-		return ["dates",table,new Date()];
 	};
 	 
 
@@ -125,14 +129,26 @@ this.updateData = function()
 {
 	var pos = 0;
 	var items = new Array();
-	
+	items.push("dates");
 	while(pos < this.maxDates){
 		//console.log(pos);
-		items.push(this.getItems(pos));
+		var ite = this.getItems(pos)
+		if(ite != "noData"){
+			if(ite[0].innerHTML != ""){
+				items.push(ite);
+			}
+			
+		}
 		pos = pos+5;
 	}
-
-	return items;
+	if(items.length > 1){
+		console.log(items);
+		return items;
+	}else{
+		console.log(items);
+		return [];
+	}
+	
 };
 	
 	}

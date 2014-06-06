@@ -38,7 +38,7 @@ var newsVideoFeed = ""; //Nachrichten Video Feed
 //var calendarFeed = "http://www.ifeiertage.de/calendar.php?bl=nw&t=dnl";
 var calendarFeed = "https://www.google.com/calendar/ical/h2pi9m6s214jk4dc914dr0kmq4%40group.calendar.google.com/private-14b669574c4341a93aca006bc838b4df/basic.ics";
 var updateTimeCalendarData = 60000; //Milliseconds
-var updateTimeCalendar = 30000; //Milliseconds
+var updateTimeCalendar = 5000; //Milliseconds
 var calendarMaxDisplayedDates = 15;
 var calendarMaxDisplayedDays = 31;
 var calendarContentPosition = "L";
@@ -67,7 +67,7 @@ var switchContentTLB = 1; //Switch through different contents (1 = Yes / 0 = Sho
 var contentTLB = ["dates"]
 var updateTimeTLB = 10000; //Milliseconds
 var fadeTimeTLB = 2500; //Milliseconds
-var updateTimeTLBContent = 20000; //Milliseconds
+var updateTimeTLBContent = 25000; //Milliseconds
 
 /*--------------------------------------
 			Content Center
@@ -103,10 +103,14 @@ var openhabItems = 	[
 						]
 					];
 
-
+var contentRightBlock = [new smartMirrorWeather(5000,5000), new smartMirrorOpenHabStatus(openhabIP)];
+var contentLeftBlock = [new smartMirrorCalendar(calendarFeed,updateTimeCalendarData,updateTimeCalendar,calendarMaxDisplayedDates,calendarMaxDisplayedDays,calendarContentPosition)];
 var contentBottom = [new smartMirrorNews(newsFeed,updateTimeNewsFeedData,updateTimeNewsFeed)];
-var currentWeatherContent = new smartMirrorCurrentWeather(updateTimeCurrentWeatherData);	
-//var contentRightBlock = [new smartMirrorWeather(5000,5000),smartMirrorOpenHabStatus(openhabIP,openhabUpdateInterval)];
-var contentRightBlock = [new smartMirrorWeather(5000,5000),new smartMirrorCalendar(calendarFeed,updateTimeCalendarData,updateTimeCalendar,calendarMaxDisplayedDates,calendarMaxDisplayedDays,calendarContentPosition)];
 var contentCenter = [new smartMirrorCompliments()];
-var contentList = [new smartMirrorWeather(15000,15000),new smartMirrorCalendar(calendarFeed,updateTimeCalendarData,updateTimeCalendar,calendarMaxDisplayedDates,calendarMaxDisplayedDays,calendarContentPosition)];
+var currentWeatherContent = new smartMirrorCurrentWeather(updateTimeCurrentWeatherData);						
+					
+					
+
+//var contentRightBlock = [new smartMirrorWeather(5000,5000),smartMirrorOpenHabStatus(openhabIP,openhabUpdateInterval)];
+//var contentRightBlock = [new smartMirrorWeather(5000,5000),new smartMirrorCalendar(calendarFeed,updateTimeCalendarData,updateTimeCalendar,calendarMaxDisplayedDates,calendarMaxDisplayedDays,calendarContentPosition),new smartMirrorOpenHabStatus(openhabIP)];
+//var contentList = [new smartMirrorWeather(15000,15000)];

@@ -57,10 +57,10 @@ var tmp_this = this;
 				forecastTable.append(row);
 				opacity -= 0.155;
 			}
-		var pushItem = ["weather",forecastTable,new Date()];
-		tmp_Items.push(pushItem);	
+		
+		
 		//$('.windsun').updateWithText(windString+' '+sunString, 1000);
-		tmp_this.pushItems = tmp_Items;
+		tmp_this.pushItems = ["weather",forecastTable];
 		//console.log(pushItems);
 		//return tmp_this.pushItems
 	}});

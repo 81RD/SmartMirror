@@ -42,6 +42,7 @@
 <script src="js/module/currentweather.js"></script>
 <script src="js/module/weather.js"></script>
 <script src="js/module/news.js"></script>
+<script src="js/module/openhab.js"></script>
 <script src="js/module/compliment.js"></script>
 <script src="js/config.js"></script>
 <script src="js/tools/moment-with-langs.min.js"></script>
