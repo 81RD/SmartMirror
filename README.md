@@ -19,15 +19,18 @@ function moduleName(){
 }
 ```
 
+![Alt text](http://abload.de/img/screenshot121uyt.png "Beispiel 1")
+
+
 Schedule:
 --------------------------
 Version 1 (in progress):
-- Modularisation
-- Calendar
-- Weather
-- News
-- Compliments
-- OpenHAB status view
+- Modularisation (check)
+- Calendar (check)
+- Weather (check)
+- News (check)
+- Compliments (Check)
+- OpenHAB status view (check)
 
 Version 2:
 - Further modularization
