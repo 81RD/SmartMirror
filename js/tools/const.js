@@ -23,7 +23,8 @@ var compliments = [
 		'Du bist der Beste!',
 		'Schau dich an... Hammer!',
 		'Heute ist dein Tag!',
-		'Spieglein, Spieglein an der Wand ...'
+		'Spieglein, Spieglein an der Wand ...',
+		'... wer ist die Schönste im ganzen Land?'
 	];		
 	
 var everyDay = 86400000;	
