@@ -2,6 +2,7 @@
 			Introduction
 ----------------------------------------
 
+
 Possible time constants:
 - everyDay 
 - everyHour 
