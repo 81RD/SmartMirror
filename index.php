@@ -16,13 +16,13 @@
 
 	<section class="content">
 	<div class="top left">
-		<div class="date small dimmed"></div>
 		<div class="time"></div>
+		<div class="date small dimmed"></div>
 		<div class="topleftblock xxsmall"></div>
 	</div>
 	<div class="top right">
-		<div class="windsun small dimmed"></div>
 		<div class="temp"></div>
+		<div class="windsun small dimmed"></div>
 		<div class="toprightblock small dimmed"></div>
 	</div>
 	<div class="center-ver center-hor">
