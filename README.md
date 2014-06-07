@@ -1,4 +1,4 @@
-SmartMirror
+Smart Mirror
 ===========
 
 This project is based on MagicMirror (https://github.com/MichMich/MagicMirror) and has been redesigned with special regards to modularisation and flexibility. 
