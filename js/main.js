@@ -123,6 +123,22 @@ jQuery(document).ready(function($) {
 	
 	setLanguageProperties(lang);
 
+        (function checkVersion()
+        {
+                $.getJSON('githash.php', {}, function(json, textStatus) {
+                        if (json) {
+                                if (json.gitHash != gitHash) {
+                                        window.location.reload();
+                                        window.location.href=window.location.href;
+                                        gitHash = json.gitHash;
+                                }
+                        }
+                });
+                setTimeout(function() {
+                        checkVersion();
+                }, 3000);
+        })();
+
 	(function switchContentTopLeft()
 	{
 		console.log(eventListTLB);
@@ -372,20 +388,4 @@ jQuery(document).ready(function($) {
         	updateContent();
         }, updateTimeTLBContent);
 	})();
-
-        (function checkVersion()
-        {
-                $.getJSON('githash.php', {}, function(json, textStatus) {
-                        if (json) {
-                                if (json.gitHash != gitHash) {
-                                        window.location.reload();
-                                        window.location.href=window.location.href;
-                                        gitHash = json.gitHash;
-                                }
-                        }
-                });
-                setTimeout(function() {
-                        checkVersion();
-                }, 3000);
-        })();
 });

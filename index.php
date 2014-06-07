@@ -5,6 +5,9 @@
 		<?php include('css/main.css') ?>
 		<?php include('css/loading.css') ?>
 	</style>
+        <script type="text/javascript">
+                var gitHash = '<?php echo trim(`git rev-parse HEAD`) ?>';
+        </script>
 	<link rel="stylesheet" type="text/css" href="css/weather-icons.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
 	<meta name="google" value="notranslate" />
@@ -13,13 +16,13 @@
 
 	<section class="content">
 	<div class="top left">
-		<div class="time"></div>
 		<div class="date small dimmed"></div>
+		<div class="time"></div>
 		<div class="topleftblock xxsmall"></div>
 	</div>
 	<div class="top right">
-		<div class="temp"></div>
 		<div class="windsun small dimmed"></div>
+		<div class="temp"></div>
 		<div class="toprightblock small dimmed"></div>
 	</div>
 	<div class="center-ver center-hor">
