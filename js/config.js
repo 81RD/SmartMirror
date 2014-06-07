@@ -21,7 +21,7 @@ var lang = 'de';
 --------------------------------------*/
 	var updateTimeCurrentWeatherData = 60000; //Milliseconds
 	var weatherParams = {
-		'q':'Dortmund,Germany',
+		'q':'Meerbusch,Germany',
 		'units':'metric',
 		'lang':lang
 	};
