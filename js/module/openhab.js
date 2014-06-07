@@ -3,7 +3,7 @@ function smartMirrorOpenHabStatus(openhabIP){
 	var updateTimeStatus	= 1000;
 	var updateTimeSitemap	= 60000;
 	this.fname 			= "openHab";
-	var sitemap = "mirror";
+	var sitemap = "simple";
 	this.itemlist = [];
 	
 	this.items = [
