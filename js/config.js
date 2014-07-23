@@ -7,7 +7,7 @@
 
 
 
-Possible time constants:
+Possible constants:
 - everyDay 
 - everyHour 
 - everyMinute 
@@ -35,8 +35,8 @@ var newsVideoFeed = ""; //Nachrichten Video Feed
 /*--------------------------------------
 			Calendar
 --------------------------------------*/
-//var calendarFeed = "http://www.ifeiertage.de/calendar.php?bl=nw&t=dnl";
-var calendarFeed = "https://www.google.com/calendar/ical/h2pi9m6s214jk4dc914dr0kmq4%40group.calendar.google.com/private-14b669574c4341a93aca006bc838b4df/basic.ics";
+var calendarFeed = "http://www.feiertage-online.de/ical/downloads/feiertage-de-2014.ics";
+
 var updateTimeCalendarData = 60000; //Milliseconds
 var updateTimeCalendar = 5000; //Milliseconds
 var calendarMaxDisplayedDates = 15;
@@ -47,7 +47,6 @@ var calendarContentPosition = "L";
 				News
 --------------------------------------*/
 var newsFeed = "http://www.faz.net/rss/aktuell/"; //Newsfeed
-//var newsFeed = "http://www.spiegel.de/schlagzeilen/tops/index.rss"; //Newsfeed
 
 var updateTimeNewsFeedData = everyMinute; //Milliseconds
 var updateTimeNewsFeed = 15000; //Milliseconds
@@ -79,38 +78,15 @@ var fadeTimeContextCenter = 2500; //Milliseconds
 				OpenHAB
 --------------------------------------*/
 var openhabIP = "192.168.2.190";
-var openhabUpdateInterval = 5000;
+var openhabUpdateInterval = 600000;
 var openhabAlertTime = 10000;
 
 var openhabAlertItem = "MagicMirrorTXT";
 
-var openhabItems = 	[
-						[ // Room
-							['towerStatus','Tower PC'],	// Item
-							['schreibtischlampeBueroA','Schreibtischlampe'] // OpenHAB ItemID, Name
-						],
-						[
-							['nachttischlampeSchlafzimmerRechts','Nachtlampe rot'],
-							['nachttischlampeSchlafzimmerLinks','Nachtlampe blau'],
-							['deckenlampeSchlafzimmer','Deckenlampe'],
-							['weckerStatus','Wecker']
-						],
-						[
-							['deckenlampeStube','Deckenlampe'],
-							['stehlampeWohnzimmerA','Stehlampe'],
-							['lgTvWohnzimmerStatus','TV'],
-							['openelecStubeStatus','OpenELEC']
-						]
-					];
 
-var contentRightBlock = [new smartMirrorWeather(5000,5000), new smartMirrorOpenHabStatus(openhabIP)];
+
+var contentRightBlock = [new smartMirrorWeather(60000,60000), new smartMirrorOpenHabStatus(openhabIP)];
 var contentLeftBlock = [new smartMirrorCalendar(calendarFeed,updateTimeCalendarData,updateTimeCalendar,calendarMaxDisplayedDates,calendarMaxDisplayedDays,calendarContentPosition)];
 var contentBottom = [new smartMirrorNews(newsFeed,updateTimeNewsFeedData,updateTimeNewsFeed)];
 var contentCenter = [new smartMirrorCompliments()];
 var currentWeatherContent = new smartMirrorCurrentWeather(updateTimeCurrentWeatherData);						
-					
-					
-
-//var contentRightBlock = [new smartMirrorWeather(5000,5000),smartMirrorOpenHabStatus(openhabIP,openhabUpdateInterval)];
-//var contentRightBlock = [new smartMirrorWeather(5000,5000),new smartMirrorCalendar(calendarFeed,updateTimeCalendarData,updateTimeCalendar,calendarMaxDisplayedDates,calendarMaxDisplayedDays,calendarContentPosition),new smartMirrorOpenHabStatus(openhabIP)];
-//var contentList = [new smartMirrorWeather(15000,15000)];

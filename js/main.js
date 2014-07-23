@@ -125,7 +125,7 @@ jQuery(document).ready(function($) {
 
 	(function switchContentTopLeft()
 	{
-		console.log(eventListTLB);
+		//console.log(eventListTLB);
 
 		if(switchContentTLB == 1){
 			
@@ -182,18 +182,20 @@ jQuery(document).ready(function($) {
 	
 	(function switchContentTopRight()
 	{
-		//console.log(eventListTRB);
+		console.log(eventListTRB);
 		if(switchContentTRB == 1){
 			if(eventListTRB.length > 0){
-				if(eventListTRB[0].length > 2){
+				if(eventListTRB[0].length > 2 && blockItemCounterRight < eventListTRB[0].length){
 					//console.log("Yes");
-					
+					//console.log(blockItemCounterRight);
+					//console.log(eventListTRB[0]);
 					$('.toprightblock').fadeOut(fadeTimeTRB, function() {
 						$('.toprightblock').html(eventListTRB[0][blockItemCounterRight]);
-						
+						//console.log(eventListTRB[0][blockItemCounterRight]);
+						blockItemCounterRight++;
 						$('.toprightblock').fadeIn(fadeTimeTRB);
 					});
-					blockItemCounterRight++;
+					
 					
 					if(blockItemCounterRight > eventListTRB[0].length){
 						blockItemCounterRight = 1;
@@ -201,6 +203,12 @@ jQuery(document).ready(function($) {
 						eventListTRB.shift();
 					}
 				}else{
+					if(blockItemCounterRight >= eventListTRB[0].length){
+						blockItemCounterRight = 1;
+						eventListTRB.push(eventListTRB[0]);
+						eventListTRB.shift();
+					}
+				
 					$('.toprightblock').fadeOut(fadeTimeTRB, function() {
 						$('.toprightblock').html(eventListTRB[0][1]);
 						if(eventListTRB.length > 1){

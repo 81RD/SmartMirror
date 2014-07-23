@@ -18,7 +18,7 @@ this.getItems = function(start)
 		opacity = 1;
 		var i = 0;
 		//var tmp_th = this;
-		//console.log(this.eventList.length);
+		console.log(this.eventList.length);
 		while(start < this.eventList.length && i < 5) {
 			var e = this.eventList[start];
 			var days = e.days;
@@ -28,7 +28,7 @@ this.getItems = function(start)
 				if (days == 0) {
 					daysString = today;
 				}
-				//console.log(daysString);
+				console.log(daysString);
 				var row = $('<tr/>').css('opacity',opacity);
 				row.append($('<td/>').html(e.description).addClass('description'));
 				row.append($('<td/>').html(daysString).addClass('days dimmed'));
@@ -60,7 +60,7 @@ this.updateData = function()
 		var events;
 		new ical_parser("calendar.php?url="+addr, function(cal){
         	events = cal.getEvents();
-        	
+        	//console.log(cal);
 
         	for (var i in events) {
 				
